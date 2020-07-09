@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="id">Employee</label>
+      <input type="text" class="form-control" id="id" formControlName="id" placeholder="Enter ID">
+      <div class="row">
+        <div class="col">
+          <span class="help-block"
+                *ngIf="(EmployeeForm.get('id').hasError('pattern') && EmployeeForm.get('id').touched) || (EmployeeForm.get('id').hasError('pattern') && submitted)">
+            Employee ID must be a number
+          </span>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-danger">Get Employees</button>
+  </form>
+  <br>
+  <app-list-employees *ngIf="showTable" [listEmployees]="employees"></app-list-employees>
+</div>
